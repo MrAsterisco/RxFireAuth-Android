@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "785761699291",
+    "firebase_url": "https://rxfireauth.firebaseio.com",
+    "project_id": "rxfireauth",
+    "storage_bucket": "rxfireauth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:785761699291:android:8eb7261b1428ad786dd3fe",
+        "android_client_info": {
+          "package_name": "io.github.mrasterisco.rxfireauthexample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "785761699291-920bb4nclvt892e8fvf8kp592nkecqsg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.mrasterisco.rxfireauthexample",
+            "certificate_hash": "d414c60af86bd1cd0d4b4636354e093a0506fd38"
+          }
+        },
+        {
+          "client_id": "785761699291-cc847rvtju19nacr5bpo0bn1tedf2gca.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWpPRPuFINnXhwKw7tilKJ4o0EugPBdqs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "785761699291-cc847rvtju19nacr5bpo0bn1tedf2gca.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "785761699291-t7ut334v14l342ukr137cla1tcs80nnb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.mrasterisco.github.RxFireAuth-Example"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
