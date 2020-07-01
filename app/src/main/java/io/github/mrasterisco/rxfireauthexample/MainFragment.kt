@@ -114,7 +114,10 @@ class MainFragment : Fragment() {
     }
 
     private fun signInWithApple(view: View) {
-        TODO()
+        toggleProgress(true)
+        userManager.signInWithApple(requireActivity(), true, migrationAllowance)
+            .subscribe(::handleLoggedIn, ::handleSignInError)
+            .addTo(compositeDisposable)
     }
 
     private fun signInWithGoogle(view: View) {

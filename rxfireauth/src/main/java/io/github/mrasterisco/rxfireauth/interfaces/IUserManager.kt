@@ -1,11 +1,14 @@
 package io.github.mrasterisco.rxfireauth.interfaces
 
+import android.app.Activity
+import androidx.fragment.app.FragmentActivity
 import io.github.mrasterisco.rxfireauth.models.LoginCredentials
 import io.github.mrasterisco.rxfireauth.models.LoginDescriptor
 import io.github.mrasterisco.rxfireauth.models.UserData
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
+import java.util.*
 
 public interface IUserManager {
 
@@ -26,11 +29,23 @@ public interface IUserManager {
 
     public fun linkAnonymousAccount(email: CharSequence, password: CharSequence): Completable
 
-    public fun login(email: CharSequence, password: CharSequence, allowMigration: Boolean?): Single<LoginDescriptor>
+    public fun login(
+        email: CharSequence,
+        password: CharSequence,
+        allowMigration: Boolean?
+    ): Single<LoginDescriptor>
 
-    public fun loginWithoutChecking(email: CharSequence, password: CharSequence, allowMigration: Boolean?): Single<LoginDescriptor>
+    public fun loginWithoutChecking(
+        email: CharSequence,
+        password: CharSequence,
+        allowMigration: Boolean?
+    ): Single<LoginDescriptor>
 
-    public fun loginWithCredentials(credentials: LoginCredentials, updateUserDisplayName: Boolean, allowMigration: Boolean?): Single<LoginDescriptor>
+    public fun loginWithCredentials(
+        credentials: LoginCredentials,
+        updateUserDisplayName: Boolean,
+        allowMigration: Boolean?
+    ): Single<LoginDescriptor>
 
     public fun logout(resetToAnonymous: Boolean): Completable
 
@@ -47,5 +62,14 @@ public interface IUserManager {
     public fun deleteUser(resetToAnonymous: Boolean): Completable
 
     public fun updatePassword(newPassword: CharSequence): Completable
+
+    fun signInWithApple(
+        activity: FragmentActivity,
+        updateUserDisplayName: Boolean,
+        allowMigration: Boolean?,
+        locale: Locale? = null
+    ): Single<LoginDescriptor>
+
+//    fun confirmAuthenticationWithApple(activity: Activity): Completable
 
 }

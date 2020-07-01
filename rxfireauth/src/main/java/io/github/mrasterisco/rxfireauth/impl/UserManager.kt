@@ -1,9 +1,11 @@
 package io.github.mrasterisco.rxfireauth.impl
 
 import android.app.Activity
+import android.os.Build
+import androidx.fragment.app.FragmentActivity
 import com.google.firebase.auth.*
 import io.github.mrasterisco.rxfireauth.exceptions.*
-import io.github.mrasterisco.rxfireauth.interfaces.ILoginProviderManager
+import io.github.mrasterisco.rxfireauth.handlers.apple.SignInWithAppleHandler
 import io.github.mrasterisco.rxfireauth.interfaces.IUserManager
 import io.github.mrasterisco.rxfireauth.models.LoginCredentials
 import io.github.mrasterisco.rxfireauth.models.LoginDescriptor
@@ -15,7 +17,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import java.util.*
 
-class UserManager : IUserManager, ILoginProviderManager {
+class UserManager : IUserManager {
 
     override val isLoggedIn: Boolean
         get() = FirebaseAuth.getInstance().currentUser.let { it != null && !it.isAnonymous }
@@ -485,60 +487,67 @@ class UserManager : IUserManager, ILoginProviderManager {
         }
 
     override fun signInWithApple(
-        activity: Activity,
+        activity: FragmentActivity,
         updateUserDisplayName: Boolean,
         allowMigration: Boolean?,
         locale: Locale?
     ): Single<LoginDescriptor> =
         Single.create { emitter ->
-            val auth = FirebaseAuth.getInstance()
+            // region OLD
+//            val auth = FirebaseAuth.getInstance()
+//
+//            val provider = OAuthProvider.newBuilder(Provider.Apple.identifier)
+//                .apply {
+//                    scopes = listOf("email", "name")
+//                    addCustomParameter("locale", (locale ?: Locale.getDefault()).language)
+//                }.build()
+//
+//            var oldUserId: String? = null
+//
+//            val successHandler: () -> Unit = {
+//                val newUser = FirebaseAuth.getInstance().currentUser
+//                if (newUser != null) {
+//                    emitter.onSuccess(
+//                        LoginDescriptor(
+//                            null, // FIXME
+//                            allowMigration ?: false,
+//                            oldUserId,
+//                            newUser.uid
+//                        )
+//                    )
+//                } else {
+//                    @Suppress("ThrowableNotThrown")
+//                    emitter.onError(NoUserException())
+//                }
+//            }
+//
+//            val failureHandler: (Throwable) -> Unit = {
+//                emitter.onError(map(it))
+//            }
+//
+//            val pending = auth.pendingAuthResult
+//            if (pending != null) {
+//                pending
+//                    .addOnSuccessListener {
+//                        successHandler()
+//                    }
+//                    .addOnFailureListener {
+//                        failureHandler(it)
+//                    }
+//            } else {
+//                auth.startActivityForSignInWithProvider(activity, provider)
+//                    .addOnSuccessListener {
+//                        successHandler()
+//                    }
+//                    .addOnFailureListener {
+//                        failureHandler(it)
+//                    }
+//            }
+            // endregion
 
-            val provider = OAuthProvider.newBuilder(Provider.Apple.identifier)
-                .apply {
-                    scopes = listOf("email", "name")
-                    addCustomParameter("locale", (locale ?: Locale.getDefault()).language)
-                }.build()
-
-            var oldUserId: String? = null
-
-            val successHandler: () -> Unit = {
-                val newUser = FirebaseAuth.getInstance().currentUser
-                if (newUser != null) {
-                    emitter.onSuccess(
-                        LoginDescriptor(
-                            null, // FIXME
-                            allowMigration ?: false,
-                            oldUserId,
-                            newUser.uid
-                        )
-                    )
-                } else {
-                    @Suppress("ThrowableNotThrown")
-                    emitter.onError(NoUserException())
-                }
-            }
-
-            val failureHandler: (Throwable) -> Unit = {
-                emitter.onError(map(it))
-            }
-
-            val pending = auth.pendingAuthResult
-            if (pending != null) {
-                pending
-                    .addOnSuccessListener {
-                        successHandler()
-                    }
-                    .addOnFailureListener {
-                        failureHandler(it)
-                    }
-            } else {
-                auth.startActivityForSignInWithProvider(activity, provider)
-                    .addOnSuccessListener {
-                        successHandler()
-                    }
-                    .addOnFailureListener {
-                        failureHandler(it)
-                    }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                val handler = SignInWithAppleHandler(activity, "io.mrasterisco.github.RxFireAuth-Example.web", "https://rxfireauth.firebaseapp.com/__/auth/handler")
+                handler.signIn()
             }
         }
 

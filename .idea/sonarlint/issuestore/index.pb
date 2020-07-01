@@ -61,5 +61,19 @@ Iapp/src/main/java/io/github/mrasterisco/rxfireauthexample/MainFragment.kt,e/b/
 build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
 @
 app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
-ç
-]rxfireauth/src/main/java/io/github/mrasterisco/rxfireauth/interfaces/ILoginProviderManager.kt,e/2/e2c9e95916be835090ac921401b8847c876cd9dd
+P
+ app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
+ì
+crxfireauth/src/main/java/io/github/mrasterisco/rxfireauth/handlers/apple/SignInWithAppleCallback.kt,1/3/133a0459d58d87b464e0314d9553236559a22bcc
+ë
+arxfireauth/src/main/java/io/github/mrasterisco/rxfireauth/handlers/apple/SignInWithAppleResult.kt,1/8/18eecb99b75471253866194dc5b1b49d5ca3e2fd
+ò
+hrxfireauth/src/main/java/io/github/mrasterisco/rxfireauth/handlers/apple/SignInWithAppleConfiguration.kt,6/7/67d12db4adfa20b97d7cffc1f40b4820dcc47186
+ó
+grxfireauth/src/main/java/io/github/mrasterisco/rxfireauth/handlers/apple/SignInWebViewDialogFragment.kt,5/4/54b201da938b2f17eed18382ff94b18919dd9ee9
+í
+brxfireauth/src/main/java/io/github/mrasterisco/rxfireauth/handlers/apple/SignInWithAppleHandler.kt,d/b/dbdc64481c5b3b927905d36b420418b93a51ab04
+ã
+[rxfireauth/src/main/java/io/github/mrasterisco/rxfireauth/handlers/apple/SignInWebClient.kt,a/c/acdae9cd49986642d6670edf25dc2d04af816633
+í
+brxfireauth/src/main/java/io/github/mrasterisco/rxfireauth/handlers/apple/SignInWithAppleService.kt,e/5/e5bc172dda47d8066b6bdc11358e0759b143aea6
