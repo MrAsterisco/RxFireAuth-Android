@@ -1,9 +1,6 @@
 package io.github.mrasterisco.rxfireauth.handlers.apple
 
-sealed class SignInWithAppleResult {
-    data class Success(val authorizationCode: String) : SignInWithAppleResult()
+interface SignInWithAppleResult
 
-    data class Failure(val error: Throwable) : SignInWithAppleResult()
-
-    object Cancel : SignInWithAppleResult()
-}
+data class SignInWithAppleSuccessDescriptor(val idToken: String, val nonce: String) : SignInWithAppleResult
+data class SignInWithAppleFailureDescriptor(val error: Throwable) : SignInWithAppleResult

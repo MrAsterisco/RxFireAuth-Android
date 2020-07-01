@@ -8,11 +8,11 @@ import androidx.fragment.app.FragmentActivity
 @RequiresApi(LOLLIPOP)
 class SignInWithAppleHandler(private val activity: FragmentActivity, private val serviceId: String, private val redirectUri: String) {
 
-    private val scopes = "name email"
+    private val scopes = listOf("name", "email")
 
     fun signIn() {
         val fragmentTag = "SignInWithAppleButton-SignInWebViewDialogFragment"
-        val service = SignInWithAppleService(activity.supportFragmentManager, fragmentTag, SignInWithAppleConfiguration(serviceId, redirectUri, scopes)) {
+        val service = SignInWithAppleInternalHandler(activity.supportFragmentManager, fragmentTag, SignInWithAppleConfiguration(serviceId, redirectUri, scopes)) {
             Log.d("SIGN_IN_WITH_APPLE", it.toString())
         }
         service.show()

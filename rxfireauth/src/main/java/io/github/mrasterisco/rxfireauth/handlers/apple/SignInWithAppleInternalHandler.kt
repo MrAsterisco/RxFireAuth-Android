@@ -1,24 +1,20 @@
 package io.github.mrasterisco.rxfireauth.handlers.apple
 
 import android.net.Uri
+import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentManager
 import java.util.*
 
-class SignInWithAppleService(
+@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+internal class SignInWithAppleInternalHandler(
     private val fragmentManager: FragmentManager,
     private val fragmentTag: String,
     private val configuration: SignInWithAppleConfiguration,
     private val callback: (SignInWithAppleResult) -> Unit
 ) {
-
-    constructor(
-        fragmentManager: FragmentManager,
-        fragmentTag: String,
-        configuration: SignInWithAppleConfiguration,
-        callback: SignInWithAppleCallback
-    ) : this(fragmentManager, fragmentTag, configuration, callback.toFunction())
 
     init {
         val fragmentIfShown =
@@ -29,9 +25,12 @@ class SignInWithAppleService(
     internal data class AuthenticationAttempt(
         val authenticationUri: String,
         val redirectUri: String,
-        val state: String
+        val state: String,
+        val secureRandomString: String
     ) : Parcelable {
+
         constructor(parcel: Parcel) : this(
+            parcel.readString() ?: "invalid",
             parcel.readString() ?: "invalid",
             parcel.readString() ?: "invalid",
             parcel.readString() ?: "invalid"
@@ -41,6 +40,7 @@ class SignInWithAppleService(
             parcel.writeString(authenticationUri)
             parcel.writeString(redirectUri)
             parcel.writeString(state)
+            parcel.writeString(secureRandomString)
         }
 
         override fun describeContents(): Int {
@@ -53,34 +53,26 @@ class SignInWithAppleService(
 
             override fun newArray(size: Int): Array<AuthenticationAttempt?> = arrayOfNulls(size)
 
-            /*
-            The authentication page URI we're creating is based off the URI constructed by Apple's JavaScript SDK,
-            which is why certain fields (like the version, v) are included in the URI construction.
-            We have to build this URI ourselves because Apple's behavior in JavaScript is to POST the response,
-            while we need a GET so we can retrieve the authentication code and verify the state
-            merely by intercepting the URL.
-            See the Sign In With Apple Javascript SDK for comparison:
-            https://developer.apple.com/documentation/signinwithapplejs/configuring_your_webpage_for_sign_in_with_apple
-            */
             fun create(
                 configuration: SignInWithAppleConfiguration,
-                state: String = UUID.randomUUID().toString()
+                state: String = UUID.randomUUID().toString(),
+                nonce: String = String.getSecureRandomString()
             ): AuthenticationAttempt {
                 val authenticationUri = Uri
                     .parse("https://appleid.apple.com/auth/authorize")
                     .buildUpon().apply {
-                        appendQueryParameter("response_type", "code")
-                        appendQueryParameter("v", "1.5.2")
                         appendQueryParameter("client_id", configuration.clientId)
                         appendQueryParameter("redirect_uri", configuration.redirectUri)
-                        appendQueryParameter("scope", configuration.scope)
-                        appendQueryParameter("state", state)
+                        appendQueryParameter("response_type", "code id_token")
+                        appendQueryParameter("scope", configuration.scopes.joinToString(" "))
                         appendQueryParameter("response_mode", "form_post")
+                        appendQueryParameter("state", state)
+                        appendQueryParameter("nonce", nonce.sha256())
                     }
                     .build()
                     .toString()
 
-                return AuthenticationAttempt(authenticationUri, configuration.redirectUri, state)
+                return AuthenticationAttempt(authenticationUri, configuration.redirectUri, state, nonce)
             }
         }
     }
@@ -90,4 +82,5 @@ class SignInWithAppleService(
         fragment.configure(callback)
         fragment.show(fragmentManager, fragmentTag)
     }
+
 }

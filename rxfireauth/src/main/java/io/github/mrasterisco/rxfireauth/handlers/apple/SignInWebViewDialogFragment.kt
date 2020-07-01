@@ -1,5 +1,6 @@
 package io.github.mrasterisco.rxfireauth.handlers.apple
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.os.Build
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.webkit.WebView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
+import java.util.concurrent.CancellationException
 
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 internal class SignInWebViewDialogFragment : DialogFragment() {
@@ -19,7 +21,7 @@ internal class SignInWebViewDialogFragment : DialogFragment() {
         private const val AUTHENTICATION_ATTEMPT_KEY = "authenticationAttempt"
         private const val WEB_VIEW_KEY = "webView"
 
-        fun newInstance(authenticationAttempt: SignInWithAppleService.AuthenticationAttempt): SignInWebViewDialogFragment {
+        fun newInstance(authenticationAttempt: SignInWithAppleInternalHandler.AuthenticationAttempt): SignInWebViewDialogFragment {
             val fragment = SignInWebViewDialogFragment()
             fragment.arguments = Bundle().apply {
                 putParcelable(AUTHENTICATION_ATTEMPT_KEY, authenticationAttempt)
@@ -28,7 +30,7 @@ internal class SignInWebViewDialogFragment : DialogFragment() {
         }
     }
 
-    private lateinit var authenticationAttempt: SignInWithAppleService.AuthenticationAttempt
+    private lateinit var authenticationAttempt: SignInWithAppleInternalHandler.AuthenticationAttempt
     private var callback: ((SignInWithAppleResult) -> Unit)? = null
 
     private val webViewIfCreated: WebView?
@@ -41,9 +43,9 @@ internal class SignInWebViewDialogFragment : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         authenticationAttempt = arguments?.getParcelable(AUTHENTICATION_ATTEMPT_KEY)!!
-//        setStyle(STYLE_NORMAL, R.style.sign_in_with_apple_button_DialogTheme)
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -57,9 +59,11 @@ internal class SignInWebViewDialogFragment : DialogFragment() {
                 javaScriptCanOpenWindowsAutomatically = true
                 setSupportMultipleWindows(false)
             }
+            val javaScriptInterface = JavaScriptInterface()
+            addJavascriptInterface(javaScriptInterface, "Reader")
+            webViewClient =
+                SignInWebViewClient(authenticationAttempt, ::onCallback, javaScriptInterface)
         }
-
-        webView.webViewClient = SignInWebViewClient(authenticationAttempt, ::onCallback)
 
         if (savedInstanceState != null) {
             savedInstanceState.getBundle(WEB_VIEW_KEY)?.run {
@@ -84,13 +88,12 @@ internal class SignInWebViewDialogFragment : DialogFragment() {
 
     override fun onStart() {
         super.onStart()
-
         dialog?.window?.setLayout(MATCH_PARENT, MATCH_PARENT)
     }
 
     override fun onCancel(dialog: DialogInterface) {
         super.onCancel(dialog)
-        onCallback(SignInWithAppleResult.Cancel)
+        onCallback(SignInWithAppleFailureDescriptor(CancellationException()))
     }
 
     private fun onCallback(result: SignInWithAppleResult) {

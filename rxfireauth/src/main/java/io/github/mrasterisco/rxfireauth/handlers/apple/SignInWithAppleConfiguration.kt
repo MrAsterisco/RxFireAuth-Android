@@ -3,13 +3,13 @@ package io.github.mrasterisco.rxfireauth.handlers.apple
 data class SignInWithAppleConfiguration(
     val clientId: String,
     val redirectUri: String,
-    val scope: String
+    val scopes: List<String>
 ) {
 
     class Builder {
         private lateinit var clientId: String
         private lateinit var redirectUri: String
-        private lateinit var scope: String
+        private lateinit var scopes: List<String>
 
         fun clientId(clientId: String) = apply {
             this.clientId = clientId
@@ -19,10 +19,10 @@ data class SignInWithAppleConfiguration(
             this.redirectUri = redirectUri
         }
 
-        fun scope(scope: String) = apply {
-            this.scope = scope
+        fun scope(scopes: List<String>) = apply {
+            this.scopes = scopes
         }
 
-        fun build() = SignInWithAppleConfiguration(clientId, redirectUri, scope)
+        fun build() = SignInWithAppleConfiguration(clientId, redirectUri, scopes)
     }
 }
