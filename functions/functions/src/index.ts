@@ -3,9 +3,7 @@ import * as admin from 'firebase-admin';
 
 admin.initializeApp();
 
-var domain = "https://postman-echo.com/get?"
-
-function getSuccessURL(code: string, idToken: string, state: string, name: string, email: string): string {
+function getSuccessURL(domain: string, code: string, idToken: string, state: string, name: string, email: string): string {
     var url = domain
         + "code=" + code 
         + "&idToken=" + idToken 
@@ -22,13 +20,19 @@ function getSuccessURL(code: string, idToken: string, state: string, name: strin
     return url;
 }
 
-function getFailureURL(reason: string): string {
+function getFailureURL(domain: string, reason: string): string {
     return domain + "&error=" + reason;
 }
 
 exports.handleAppleSignIn = functions.https.onRequest((request, response) => {
+    var domain: string = request.query["domain"] as string;
+    if (domain === undefined) {
+        response.status(400).send("Missing Domain!");
+        return;
+    }
+
     if (request.method !== "POST") {
-        response.redirect(getFailureURL("methodNotAllowed"))
+        response.redirect(getFailureURL(domain, "methodNotAllowed"))
         return;
     }
 
@@ -37,7 +41,7 @@ exports.handleAppleSignIn = functions.https.onRequest((request, response) => {
     var state = request.body["state"];
 
     if (code === undefined || idToken === undefined || state === undefined) {
-        response.redirect(getFailureURL("badRequest"))
+        response.redirect(getFailureURL(domain, "badRequest"))
         return;
     }
 
@@ -54,6 +58,6 @@ exports.handleAppleSignIn = functions.https.onRequest((request, response) => {
     }
 
     response.redirect(
-        getSuccessURL(code, idToken, state, fullName, email)
+        getSuccessURL(domain, code, idToken, state, fullName, email)
     );
 });
