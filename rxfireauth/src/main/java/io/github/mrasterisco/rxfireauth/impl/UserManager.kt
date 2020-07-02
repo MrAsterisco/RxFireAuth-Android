@@ -1,3 +1,5 @@
+@file:Suppress("ThrowableNotThrown")
+
 package io.github.mrasterisco.rxfireauth.impl
 
 import android.app.Activity
@@ -6,6 +8,8 @@ import androidx.fragment.app.FragmentActivity
 import com.google.firebase.auth.*
 import io.github.mrasterisco.rxfireauth.exceptions.*
 import io.github.mrasterisco.rxfireauth.handlers.apple.SignInWithAppleHandler
+import io.github.mrasterisco.rxfireauth.handlers.google.GoogleSignInHandler
+import io.github.mrasterisco.rxfireauth.interfaces.ILoginHandler
 import io.github.mrasterisco.rxfireauth.interfaces.IUserManager
 import io.github.mrasterisco.rxfireauth.models.LoginCredentials
 import io.github.mrasterisco.rxfireauth.models.LoginDescriptor
@@ -15,9 +19,11 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.subjects.BehaviorSubject
-import java.util.*
 
 class UserManager : IUserManager {
+
+    override var loginHandler: ILoginHandler? = null
+        private set
 
     override val isLoggedIn: Boolean
         get() = FirebaseAuth.getInstance().currentUser.let { it != null && !it.isAnonymous }
@@ -261,7 +267,7 @@ class UserManager : IUserManager {
                         // There is a currently logged-in user.
                         if (currentUser.isAnonymous) {
                             if (allowMigration == null) {
-                                emitter.onError(MigrationRequiredException(null))
+                                emitter.onError(MigrationRequiredException(credentials))
                                 return@addOnSuccessListener
                             }
 
@@ -412,19 +418,19 @@ class UserManager : IUserManager {
         }
 
     override fun confirmAuthentication(email: CharSequence, password: CharSequence): Completable =
-        confirmAuthentication(
+        confirmAuthenticationWithCredentials(
             LoginCredentials(
                 "",
-                "",
+                null,
                 null,
                 email.toString(),
                 password.toString(),
                 Provider.Password,
-                ""
+                null
             )
         )
 
-    override fun confirmAuthentication(loginCredentials: LoginCredentials): Completable =
+    override fun confirmAuthenticationWithCredentials(loginCredentials: LoginCredentials): Completable =
         Completable.create { emitter ->
             val currentUser = FirebaseAuth.getInstance().currentUser
             if (currentUser == null) {
@@ -486,70 +492,123 @@ class UserManager : IUserManager {
             return@defer linkUserToEmailAndPassword(currentUser, email, newPassword)
         }
 
-    override fun signInWithApple(
+    private fun signInWithAppleHandler(
         activity: FragmentActivity,
-        updateUserDisplayName: Boolean,
-        allowMigration: Boolean?,
-        locale: Locale?
-    ): Single<LoginDescriptor> =
-        Single.create { emitter ->
-            // region OLD
-//            val auth = FirebaseAuth.getInstance()
-//
-//            val provider = OAuthProvider.newBuilder(Provider.Apple.identifier)
-//                .apply {
-//                    scopes = listOf("email", "name")
-//                    addCustomParameter("locale", (locale ?: Locale.getDefault()).language)
-//                }.build()
-//
-//            var oldUserId: String? = null
-//
-//            val successHandler: () -> Unit = {
-//                val newUser = FirebaseAuth.getInstance().currentUser
-//                if (newUser != null) {
-//                    emitter.onSuccess(
-//                        LoginDescriptor(
-//                            null, // FIXME
-//                            allowMigration ?: false,
-//                            oldUserId,
-//                            newUser.uid
-//                        )
-//                    )
-//                } else {
-//                    @Suppress("ThrowableNotThrown")
-//                    emitter.onError(NoUserException())
-//                }
-//            }
-//
-//            val failureHandler: (Throwable) -> Unit = {
-//                emitter.onError(map(it))
-//            }
-//
-//            val pending = auth.pendingAuthResult
-//            if (pending != null) {
-//                pending
-//                    .addOnSuccessListener {
-//                        successHandler()
-//                    }
-//                    .addOnFailureListener {
-//                        failureHandler(it)
-//                    }
-//            } else {
-//                auth.startActivityForSignInWithProvider(activity, provider)
-//                    .addOnSuccessListener {
-//                        successHandler()
-//                    }
-//                    .addOnFailureListener {
-//                        failureHandler(it)
-//                    }
-//            }
-            // endregion
-
+        serviceId: String,
+        redirectUri: String
+    ): Single<LoginCredentials> {
+        val single: Single<LoginCredentials> = Single.create { emitter ->
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                val handler = SignInWithAppleHandler(activity, "io.mrasterisco.github.RxFireAuth-Example.web", "https://rxfireauth.firebaseapp.com/__/auth/handler")
-                handler.signIn()
+                val handler = SignInWithAppleHandler(activity, serviceId, redirectUri)
+                loginHandler = handler
+
+                handler.signIn { idToken, nonce, displayName, email, error ->
+                    if (error != null) {
+                        emitter.onError(error)
+                        return@signIn
+                    }
+
+                    if (email != null) {
+                        emitter.onSuccess(
+                            LoginCredentials(
+                                idToken ?: "",
+                                null,
+                                displayName,
+                                email,
+                                null,
+                                Provider.Apple,
+                                nonce
+                            )
+                        )
+                    } else {
+                        emitter.onError(IllegalArgumentException("Email is null!"))
+                    }
+                }
+            } else {
+                emitter.onError(UnsupportedOperationException("Sign in with Apple requires API ${Build.VERSION_CODES.LOLLIPOP}!"))
             }
         }
+
+        return single
+            .doOnDispose {
+                loginHandler = null
+            }
+    }
+
+    override fun signInWithApple(
+        activity: FragmentActivity,
+        serviceId: String,
+        redirectUri: String,
+        updateUserDisplayName: Boolean,
+        allowMigration: Boolean?
+    ): Single<LoginDescriptor> =
+        signInWithAppleHandler(activity, serviceId, redirectUri)
+            .flatMap { loginWithCredentials(it, updateUserDisplayName, allowMigration) }
+
+    override fun confirmAuthenticationWithApple(
+        activity: FragmentActivity,
+        serviceId: String,
+        redirectUri: String
+    ): Completable =
+        signInWithAppleHandler(activity, serviceId, redirectUri)
+            .flatMapCompletable { confirmAuthenticationWithCredentials(it) }
+
+    private fun signInWithGoogleHandler(
+        activity: Activity,
+        clientId: String,
+        requestCode: Int
+    ): Single<LoginCredentials> {
+        val single: Single<LoginCredentials> = Single.create { emitter ->
+            val handler = GoogleSignInHandler(clientId, activity, requestCode)
+            loginHandler = handler
+
+            handler.signIn { idToken, _, email, fullName, error ->
+                if (error != null) {
+                    emitter.onError(error)
+                    return@signIn
+                }
+
+                if (email != null) {
+                    emitter.onSuccess(
+                        LoginCredentials(
+                            idToken ?: "",
+                            null,
+                            fullName,
+                            email,
+                            null,
+                            Provider.Google,
+                            null
+                        )
+                    )
+                } else {
+                    emitter.onError(IllegalArgumentException("Email is null!"))
+                }
+            }
+        }
+
+        return single
+            .doOnDispose {
+                loginHandler = null
+            }
+    }
+
+    override fun signInWithGoogle(
+        activity: Activity,
+        clientId: String,
+        requestCode: Int,
+        updateUserDisplayName: Boolean,
+        allowMigration: Boolean?
+    ): Single<LoginDescriptor> =
+        signInWithGoogleHandler(activity, clientId, requestCode)
+            .flatMap { loginWithCredentials(it, updateUserDisplayName, allowMigration) }
+
+    override fun confirmAuthenticationWithGoogle(
+        activity: FragmentActivity,
+        clientId: String,
+        requestCode: Int
+    ): Completable =
+        signInWithGoogleHandler(activity, clientId, requestCode)
+            .flatMapCompletable { confirmAuthenticationWithCredentials(it) }
 
     private fun map(error: Throwable): Throwable {
         return error

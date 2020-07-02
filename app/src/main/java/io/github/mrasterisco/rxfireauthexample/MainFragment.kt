@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,8 +38,8 @@ class MainFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
 
         userManager.autoupdatingUser
             .observeOn(AndroidSchedulers.mainThread())
@@ -94,8 +95,8 @@ class MainFragment : Fragment() {
         delete_button.setOnClickListener(::deleteAccount)
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onStop() {
+        super.onStop()
         compositeDisposable.clear()
     }
 
@@ -115,13 +116,28 @@ class MainFragment : Fragment() {
 
     private fun signInWithApple(view: View) {
         toggleProgress(true)
-        userManager.signInWithApple(requireActivity(), true, migrationAllowance)
+        userManager.signInWithApple(
+            requireActivity(),
+            BuildConfig.APPLE_SERVICE_ID,
+            BuildConfig.APPLE_REDIRECT_URI,
+            true,
+            migrationAllowance
+        )
             .subscribe(::handleLoggedIn, ::handleSignInError)
             .addTo(compositeDisposable)
     }
 
     private fun signInWithGoogle(view: View) {
-        TODO()
+        toggleProgress(true)
+        userManager.signInWithGoogle(
+            requireActivity(),
+            BuildConfig.GOOGLE_CLIENT_ID,
+            MainActivity.googleSignInRequestCode,
+            true,
+            migrationAllowance
+        )
+            .subscribe(::handleLoggedIn, ::handleSignInError)
+            .addTo(compositeDisposable)
     }
 
     private fun signOut(view: View) {
@@ -217,10 +233,34 @@ class MainFragment : Fragment() {
                     }, ::showError).addTo(compositeDisposable)
             }
             Provider.Apple -> {
-                TODO()
+                toggleProgress(true)
+                userManager.confirmAuthenticationWithApple(
+                    requireActivity(),
+                    BuildConfig.APPLE_SERVICE_ID,
+                    BuildConfig.APPLE_REDIRECT_URI
+                ).observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        toggleProgress(false)
+                        showAlert(
+                            getString(R.string.authentication_confirmed_title),
+                            getString(R.string.authentication_confirmed_message)
+                        )
+                    }, ::showError).addTo(compositeDisposable)
             }
             Provider.Google -> {
-                TODO()
+                toggleProgress(true)
+                userManager.confirmAuthenticationWithGoogle(
+                    requireActivity(),
+                    BuildConfig.GOOGLE_CLIENT_ID,
+                    MainActivity.googleSignInRequestCode
+                ).observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        toggleProgress(false)
+                        showAlert(
+                            getString(R.string.authentication_confirmed_title),
+                            getString(R.string.authentication_confirmed_message)
+                        )
+                    }, ::showError).addTo(compositeDisposable)
             }
         }
     }
@@ -359,6 +399,7 @@ class MainFragment : Fragment() {
 
     private fun showError(error: Throwable) {
         showAlert(getString(R.string.error_dialog_title), error.localizedMessage ?: "")
+        error.printStackTrace()
     }
 
     private val migrationAllowance: Boolean?

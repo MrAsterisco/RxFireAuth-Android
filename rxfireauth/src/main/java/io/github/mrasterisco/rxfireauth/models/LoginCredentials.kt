@@ -8,12 +8,12 @@ import com.google.firebase.auth.OAuthProvider
 public data class LoginCredentials(
 
     public var idToken: String,
-    public var accessToken: String,
+    public var accessToken: String?,
     public var fullName: String?,
     public var email: String,
     public var password: String?,
     public var provider: Provider,
-    public var nonce: String
+    public var nonce: String?
 
 ) {
 

@@ -19,6 +19,8 @@ internal class JavaScriptInterface {
     internal var name: String = ""
         private set
 
+    internal var completionHandler: (() -> Unit)? = null
+
     @JavascriptInterface
     fun read(body: String) {
         val map = convertToMap(body)
@@ -35,6 +37,8 @@ internal class JavaScriptInterface {
                 name = extractName(it)
             }
         } catch (exc: Throwable) { /* ignored */ }
+
+        completionHandler?.invoke()
     }
 
     private fun convertToMap(body: String): Map<String, String> {

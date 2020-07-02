@@ -3,18 +3,27 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 
+Properties properties = new Properties()
+if (project.rootProject.file('local.properties').canRead()) {
+    properties.load(project.rootProject.file("local.properties").newDataInputStream())
+}
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
 
     defaultConfig {
         applicationId "io.github.mrasterisco.rxfireauthexample"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', 'APPLE_SERVICE_ID', properties.getProperty('apple.serviceId', '')
+        buildConfigField 'String', 'APPLE_REDIRECT_URI', properties.getProperty('apple.redirectUri', '')
+        buildConfigField 'String', 'GOOGLE_CLIENT_ID', properties.getProperty('google.clientId', '')
     }
 
     buildTypes {

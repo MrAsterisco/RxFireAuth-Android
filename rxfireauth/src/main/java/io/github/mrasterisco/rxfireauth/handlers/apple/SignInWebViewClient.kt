@@ -17,13 +17,14 @@ internal class SignInWebViewClient(
     override fun onPageFinished(view: WebView, url: String) {
         if (!url.contains(attempt.redirectUri)) return
 
-        view.loadUrl("javascript:window.Reader.read(POST_BODY);")
-
-        if (javaScriptInterface.idToken.isNotBlank()) {
-            callback(SignInWithAppleSuccessDescriptor(javaScriptInterface.idToken, attempt.secureRandomString))
-        } else {
-            callback(SignInWithAppleFailureDescriptor(IllegalArgumentException("ID Token is null or blank.")))
+        javaScriptInterface.completionHandler = {
+            if (javaScriptInterface.idToken.isNotBlank()) {
+                callback(SignInWithAppleSuccessDescriptor(javaScriptInterface.idToken, attempt.secureRandomString, javaScriptInterface.email, javaScriptInterface.name))
+            } else {
+                callback(SignInWithAppleFailureDescriptor(IllegalArgumentException("ID Token is null or blank.")))
+            }
         }
+        view.loadUrl("javascript:window.Reader.read(POST_BODY);")
     }
 
 }
