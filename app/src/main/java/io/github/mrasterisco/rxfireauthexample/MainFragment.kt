@@ -44,7 +44,7 @@ class MainFragment : Fragment() {
         userManager.autoupdatingUser
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                if (!it.id.isNullOrEmpty()) {
+                if (it.isValid) {
                     if (it.isAnonymous) {
                         welcome_text.setText(R.string.welcome_anonymous_label)
                         subtitle_text.setText(R.string.welcome_anonymous_subtitle)

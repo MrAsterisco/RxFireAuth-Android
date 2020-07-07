@@ -2,7 +2,7 @@ package io.github.mrasterisco.rxfireauth.models
 
 import com.google.firebase.auth.FirebaseUser
 
-public data class UserData(
+public data class UserData internal constructor(
 
     public val id: String?,
     public val email: String?,
@@ -40,5 +40,8 @@ public data class UserData(
     override fun hashCode(): Int {
         return id?.hashCode() ?: 0
     }
+
+    val isValid: Boolean
+        get() = id?.isNotBlank() == true
 
 }

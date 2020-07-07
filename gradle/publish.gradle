@@ -1,0 +1,21 @@
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+
+apply from: project.rootProject.file('gradle/pom.gradle')
+
+afterEvaluate {
+    publishing {
+        publications {
+            mavenRelease(MavenPublication) {
+                from components.release
+
+                groupId group
+                artifactId project.bintrayPackage
+                version project.version
+            }
+        }
+    }
+}
+
+apply from: project.rootProject.file("gradle/bintray.gradle")
