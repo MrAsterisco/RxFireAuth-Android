@@ -2,7 +2,6 @@ package io.github.mrasterisco.rxfireauth.handlers.apple
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,11 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.webkit.WebView
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
 import java.util.concurrent.CancellationException
 
-@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 internal class SignInWebViewDialogFragment : DialogFragment() {
 
     companion object {
@@ -59,7 +56,7 @@ internal class SignInWebViewDialogFragment : DialogFragment() {
                 javaScriptCanOpenWindowsAutomatically = true
                 setSupportMultipleWindows(false)
             }
-            val javaScriptInterface = JavaScriptInterface()
+            val javaScriptInterface = FirebaseJavaScriptReader()
             addJavascriptInterface(javaScriptInterface, "Reader")
             webViewClient =
                 SignInWebViewClient(authenticationAttempt, ::onCallback, javaScriptInterface)

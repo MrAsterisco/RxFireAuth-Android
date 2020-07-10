@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
 import java.security.SecureRandom
 
-fun String.Companion.getSecureRandomString(length: Int = 32): String {
+internal fun String.Companion.getSecureRandomString(length: Int = 32): String {
     val generator = SecureRandom()
 
     val charsetDecoder = StandardCharsets.US_ASCII.newDecoder()
@@ -27,7 +27,7 @@ fun String.Companion.getSecureRandomString(length: Int = 32): String {
     return outBuffer.toString()
 }
 
-fun String.sha256(): String {
+internal fun String.sha256(): String {
     val md = MessageDigest.getInstance("SHA-256")
     val digest = md.digest(toByteArray())
     val hash = StringBuilder()

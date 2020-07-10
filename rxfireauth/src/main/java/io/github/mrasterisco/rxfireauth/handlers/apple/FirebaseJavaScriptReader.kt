@@ -5,22 +5,22 @@ import com.auth0.android.jwt.JWT
 import org.json.JSONObject
 import java.net.URLDecoder
 
-@Suppress("unused")
-internal class JavaScriptInterface {
+internal class FirebaseJavaScriptReader {
 
-    internal var code: String = ""
+    var code: String = ""
         private set
-    internal var idToken: String = ""
+    var idToken: String = ""
         private set
-    internal var state: String = ""
+    var state: String = ""
         private set
-    internal var email: String = ""
+    var email: String = ""
         private set
-    internal var name: String = ""
+    var name: String = ""
         private set
 
-    internal var completionHandler: (() -> Unit)? = null
+    var completionHandler: (() -> Unit)? = null
 
+    @Suppress("unused")
     @JavascriptInterface
     fun read(body: String) {
         val map = convertToMap(body)
@@ -30,8 +30,9 @@ internal class JavaScriptInterface {
         state = map["state"] ?: ""
 
         try {
-            val jwt = JWT(idToken)
-            email = jwt.getClaim("email").asString() ?: ""
+            JWT(idToken).getClaim("email").asString()?.let {
+                email = it
+            }
 
             map["user"]?.let {
                 name = extractName(it)

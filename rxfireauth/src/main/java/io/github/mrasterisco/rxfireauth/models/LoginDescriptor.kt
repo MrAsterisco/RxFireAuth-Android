@@ -29,7 +29,20 @@ public data class LoginDescriptor(
      * from [oldUserId] and attach it to [newUserId].
      */
     public val performMigration: Boolean,
+    /**
+     * Get the old user ID.
+     *
+     * This property has a value only when a data migration is required.
+     * This is the Firebase `uid` of the anonymous user that has just been deleted
+     * and replaced with an existing account.
+     */
     public val oldUserId: String?,
+    /**
+     * Get the new user ID.
+     *
+     * This property holds the Firebase `uid` of the user that is currently logged-in
+     * as a result of a sign in action.
+     */
     public val newUserId: String?
 
 )

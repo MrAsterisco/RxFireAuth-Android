@@ -8,7 +8,6 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentManager
 import java.util.*
 
-@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 internal class SignInWithAppleInternalHandler(
     private val fragmentManager: FragmentManager,
     private val fragmentTag: String,

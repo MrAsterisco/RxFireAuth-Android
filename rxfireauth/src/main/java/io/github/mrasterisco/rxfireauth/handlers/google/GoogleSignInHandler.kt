@@ -8,9 +8,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import io.github.mrasterisco.rxfireauth.interfaces.ILoginHandler
 
-typealias GoogleSignInCompletionHandler = (idToken: String?, accessToken: String?, email: String?, fullName: String?, error: Throwable?) -> Unit
-
-internal class GoogleSignInHandler(private val clientId: String, private val activity: Activity, private val requestCode: Int): ILoginHandler {
+internal class GoogleSignInHandler(clientId: String, private val activity: Activity, private val requestCode: Int): ILoginHandler {
 
     private val client: GoogleSignInClient =
         GoogleSignIn.getClient(
