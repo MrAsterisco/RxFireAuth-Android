@@ -6,7 +6,7 @@ bintray {
 
     user = properties.getProperty('bintrayUser')
     key = properties.getProperty('bintrayApiKey')
-    publications = ["mavenRelease"]
+    publications = ["release"]
     publish = true
     override = true
 

@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>IUserManager.logout - rxfireauth</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">rxfireauth</a>&nbsp;/&nbsp;<a href="../index.html">io.github.mrasterisco.rxfireauth.interfaces</a>&nbsp;/&nbsp;<a href="index.html">IUserManager</a>&nbsp;/&nbsp;<a href="./logout.html">logout</a><br/>
+<br/>
+<h1>logout</h1>
+<a name="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$logout(kotlin.Boolean)"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">logout</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$logout(kotlin.Boolean)/resetToAnonymous">resetToAnonymous</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code>
+<p>Sign out the currently logged-in user.</p>
+<p>Using <a href="logout.html#io.github.mrasterisco.rxfireauth.interfaces.IUserManager$logout(kotlin.Boolean)/resetToAnonymous">resetToAnonymous</a>, you can make sure that there is always a user signed in; in fact,
+if the parameter is set to <code>true</code>, this function will call <a href="login-anonymously.html">loginAnonymously</a> immediately after
+the logout operation has completed.</p>
+<h3>Parameters</h3>
+<p><a name="resetToAnonymous"></a>
+<code>resetToAnonymous</code> - If true, after having logged-out successfully, this function will immediately sign in a new anonymous user.</p>
+<p><strong>Return</strong><br/>
+A Completable action to observe.</p>
+</BODY>
+</HTML>

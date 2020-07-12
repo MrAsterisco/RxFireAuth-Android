@@ -1,0 +1,37 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>UserManager.updateUser - rxfireauth</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">rxfireauth</a>&nbsp;/&nbsp;<a href="../index.html">io.github.mrasterisco.rxfireauth.impl</a>&nbsp;/&nbsp;<a href="index.html">UserManager</a>&nbsp;/&nbsp;<a href="./update-user.html">updateUser</a><br/>
+<br/>
+<h1>updateUser</h1>
+<a name="io.github.mrasterisco.rxfireauth.impl.UserManager$updateUser(io.github.mrasterisco.rxfireauth.models.UserData)"></a>
+<code><span class="keyword">fun </span><span class="identifier">updateUser</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.impl.UserManager$updateUser(io.github.mrasterisco.rxfireauth.models.UserData)/user">user</span><span class="symbol">:</span>&nbsp;<a href="../../io.github.mrasterisco.rxfireauth.models/-user-data/index.html"><span class="identifier">UserData</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code>
+<p>Update the currently signed in user taking new values from the passed object.</p>
+<p>You cannot instantiate a <a href="../../io.github.mrasterisco.rxfireauth.models/-user-data/index.html">UserData</a> instance directly. To pass the parameter to this function,
+use a value retrieved from <a href="../../io.github.mrasterisco.rxfireauth.interfaces/-i-user-manager/update-user.html#io.github.mrasterisco.rxfireauth.interfaces.IUserManager$updateUser(io.github.mrasterisco.rxfireauth.models.UserData)/user">user</a> or <a href="../../io.github.mrasterisco.rxfireauth.interfaces/-i-user-manager/autoupdating-user.html">autoupdatingUser</a>. To simplify this even further, use <a href="#">updateUseruserConfigurationHandler:</a>.</p>
+<p>This function will not update the user email address, even if it has changed.</p>
+<h3>Parameters</h3>
+<p><a name="user"></a>
+<code>user</code> - A user to gather new values from.</p>
+<p><strong>See Also</strong><br/>
+<p><a href="../../io.github.mrasterisco.rxfireauth.interfaces/-i-user-manager/update-user.html">updateUser</a></p>
+</p>
+<p><strong>Return</strong><br/>
+A Completable action to observe.</p>
+<a name="io.github.mrasterisco.rxfireauth.impl.UserManager$updateUser(kotlin.Function1((io.github.mrasterisco.rxfireauth.models.UserData, )))"></a>
+<code><span class="keyword">fun </span><span class="identifier">updateUser</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.impl.UserManager$updateUser(kotlin.Function1((io.github.mrasterisco.rxfireauth.models.UserData, )))/userConfigurationHandler">userConfigurationHandler</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../io.github.mrasterisco.rxfireauth.models/-user-data/index.html"><span class="identifier">UserData</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="../../io.github.mrasterisco.rxfireauth.models/-user-data/index.html"><span class="identifier">UserData</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code>
+<p>Update the currently signed in user by retrieving its value and passing it
+to the <a href="../../io.github.mrasterisco.rxfireauth.interfaces/-i-user-manager/update-user.html#io.github.mrasterisco.rxfireauth.interfaces.IUserManager$updateUser(kotlin.Function1((io.github.mrasterisco.rxfireauth.models.UserData, )))/userConfigurationHandler">userConfigurationHandler</a>.</p>
+<p>This function is a shorthand that takes the first value of <a href="../../io.github.mrasterisco.rxfireauth.interfaces/-i-user-manager/autoupdating-user.html">autoupdatingUser</a>,
+maps it by calling <a href="../../io.github.mrasterisco.rxfireauth.interfaces/-i-user-manager/update-user.html#io.github.mrasterisco.rxfireauth.interfaces.IUserManager$updateUser(kotlin.Function1((io.github.mrasterisco.rxfireauth.models.UserData, )))/userConfigurationHandler">userConfigurationHandler</a> and passes the result to <a href="../../io.github.mrasterisco.rxfireauth.interfaces/-i-user-manager/update-user.html">updateUser</a>.</p>
+<h3>Parameters</h3>
+<p><a name="userConfigurationHandler"></a>
+<code>userConfigurationHandler</code> - A function that takes a <a href="../../io.github.mrasterisco.rxfireauth.models/-user-data/index.html">UserData</a> instance and returns it with the required changes.</p>
+<p><strong>Return</strong><br/>
+A Completable action to observe.</p>
+</BODY>
+</HTML>

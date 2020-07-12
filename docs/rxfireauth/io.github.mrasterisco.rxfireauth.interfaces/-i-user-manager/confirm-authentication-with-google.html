@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>IUserManager.confirmAuthenticationWithGoogle - rxfireauth</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">rxfireauth</a>&nbsp;/&nbsp;<a href="../index.html">io.github.mrasterisco.rxfireauth.interfaces</a>&nbsp;/&nbsp;<a href="index.html">IUserManager</a>&nbsp;/&nbsp;<a href="./confirm-authentication-with-google.html">confirmAuthenticationWithGoogle</a><br/>
+<br/>
+<h1>confirmAuthenticationWithGoogle</h1>
+<a name="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$confirmAuthenticationWithGoogle(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.Int)"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">confirmAuthenticationWithGoogle</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$confirmAuthenticationWithGoogle(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.Int)/activity">activity</span><span class="symbol">:</span>&nbsp;<span class="identifier">FragmentActivity</span><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$confirmAuthenticationWithGoogle(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.Int)/clientId">clientId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$confirmAuthenticationWithGoogle(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.Int)/requestCode">requestCode</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code>
+<p>Confirm the authentication of the currently signed in user with Google Sign In.</p>
+<p>You can use this function to renew the user authentication in order to perform sensitive
+actions such as updating the password or the deleting the account. The resulting Completable will
+emit <a href="../../io.github.mrasterisco.rxfireauth.exceptions/-provider-not-linked-exception/index.html">ProviderNotLinkedException</a>, if the user does not have Google Sign In among their <a href="../../io.github.mrasterisco.rxfireauth.models/-user-data/authentication-providers.html">UserData.authenticationProviders</a>.</p>
+<h3>Parameters</h3>
+<p><a name="activity"></a>
+<code>activity</code> - The activity over which the Google Sign In UI should be displayed.</p>
+<p><a name="clientId"></a>
+<code>clientId</code> - Your client ID:</p>
+<p><a name="requestCode"></a>
+<code>requestCode</code> - A unique identifier that is returned to your activity in <a href="https://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent)">Activity.onActivityResult</a>. When you receive this request code, you must forward the Intent to the <a href="login-handler.html">loginHandler</a>, by calling <a href="../-i-login-handler/handle.html">ILoginHandler.handle</a>.</p>
+<p><strong>Return</strong><br/>
+A Completable action to observe.</p>
+</BODY>
+</HTML>

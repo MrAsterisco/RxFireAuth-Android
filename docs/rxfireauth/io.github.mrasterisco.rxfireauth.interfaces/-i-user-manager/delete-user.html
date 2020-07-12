@@ -1,0 +1,20 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>IUserManager.deleteUser - rxfireauth</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">rxfireauth</a>&nbsp;/&nbsp;<a href="../index.html">io.github.mrasterisco.rxfireauth.interfaces</a>&nbsp;/&nbsp;<a href="index.html">IUserManager</a>&nbsp;/&nbsp;<a href="./delete-user.html">deleteUser</a><br/>
+<br/>
+<h1>deleteUser</h1>
+<a name="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$deleteUser(kotlin.Boolean)"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">deleteUser</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$deleteUser(kotlin.Boolean)/resetToAnonymous">resetToAnonymous</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code>
+<p>Delete the currently signed in user.</p>
+<p>This is a sensitive action. If the user hasn't signed in recently, you'll need to
+confirm the authentication through one of the methods in the "confirmAuthenticationWith…" family.</p>
+<p>Using <a href="delete-user.html#io.github.mrasterisco.rxfireauth.interfaces.IUserManager$deleteUser(kotlin.Boolean)/resetToAnonymous">resetToAnonymous</a>, you can make sure that there is always a user signed in; in fact,
+if the parameter is set to <code>true</code>, this function will call <a href="login-anonymously.html">loginAnonymously</a> immediately after
+the logout operation has completed.</p>
+</BODY>
+</HTML>

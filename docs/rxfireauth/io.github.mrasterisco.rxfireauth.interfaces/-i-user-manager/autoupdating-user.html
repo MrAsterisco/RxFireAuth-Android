@@ -1,0 +1,19 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>IUserManager.autoupdatingUser - rxfireauth</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">rxfireauth</a>&nbsp;/&nbsp;<a href="../index.html">io.github.mrasterisco.rxfireauth.interfaces</a>&nbsp;/&nbsp;<a href="index.html">IUserManager</a>&nbsp;/&nbsp;<a href="./autoupdating-user.html">autoupdatingUser</a><br/>
+<br/>
+<h1>autoupdatingUser</h1>
+<a name="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$autoupdatingUser"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">autoupdatingUser</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../io.github.mrasterisco.rxfireauth.models/-user-data/index.html"><span class="identifier">UserData</span></a><span class="symbol">&gt;</span></code>
+<p>Get an Observable that emits a new item every time the logged-in user
+is updated.</p>
+<p>Since RxJava does not support emitting null, this Observable will always
+emit a value, even when there is no user logged-in. To check whether the returned object
+is a valid user or not, call <a href="../../io.github.mrasterisco.rxfireauth.models/-user-data/is-valid.html">UserData.isValid</a> on it.</p>
+</BODY>
+</HTML>

@@ -1,0 +1,108 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>LoginCredentials - rxfireauth</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">rxfireauth</a>&nbsp;/&nbsp;<a href="../index.html">io.github.mrasterisco.rxfireauth.models</a>&nbsp;/&nbsp;<a href="./index.html">LoginCredentials</a><br/>
+<br/>
+<h1>LoginCredentials</h1>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">LoginCredentials</span></code>
+<p>This class represents a set of credentials
+used to perform a sign in with a specific authentication provider.</p>
+<p>Instances of this class are returned when a recoverable error,
+such as <a href="../../io.github.mrasterisco.rxfireauth.exceptions/-migration-required-exception/index.html">MigrationRequiredException</a>, occurs during a sign in.</p>
+<p>You shouldn't need to to inspect the content of this class.
+Its main purpose is to temporary store credentials in order to
+continue the login action when your client has handled the error.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>This class represents a set of credentials
+used to perform a sign in with a specific authentication provider.</p>
+<code><span class="identifier">LoginCredentials</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.models.LoginCredentials$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, io.github.mrasterisco.rxfireauth.models.Provider, kotlin.String)/idToken">idToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.models.LoginCredentials$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, io.github.mrasterisco.rxfireauth.models.Provider, kotlin.String)/accessToken">accessToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.models.LoginCredentials$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, io.github.mrasterisco.rxfireauth.models.Provider, kotlin.String)/fullName">fullName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.models.LoginCredentials$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, io.github.mrasterisco.rxfireauth.models.Provider, kotlin.String)/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.models.LoginCredentials$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, io.github.mrasterisco.rxfireauth.models.Provider, kotlin.String)/password">password</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.models.LoginCredentials$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, io.github.mrasterisco.rxfireauth.models.Provider, kotlin.String)/provider">provider</span><span class="symbol">:</span>&nbsp;<a href="../-provider/index.html"><span class="identifier">Provider</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.models.LoginCredentials$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, io.github.mrasterisco.rxfireauth.models.Provider, kotlin.String)/nonce">nonce</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="access-token.html">accessToken</a></h4>
+</td>
+<td>
+<p>Get or set the access token.</p>
+<code><span class="keyword">var </span><span class="identifier">accessToken</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="email.html">email</a></h4>
+</td>
+<td>
+<p>Get or set the user email.</p>
+<code><span class="keyword">var </span><span class="identifier">email</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="full-name.html">fullName</a></h4>
+</td>
+<td>
+<p>Get or set the user full name.</p>
+<code><span class="keyword">var </span><span class="identifier">fullName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="id-token.html">idToken</a></h4>
+</td>
+<td>
+<p>Get or set the ID token.</p>
+<code><span class="keyword">var </span><span class="identifier">idToken</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="nonce.html">nonce</a></h4>
+</td>
+<td>
+<p>Get or set the nonce.</p>
+<code><span class="keyword">var </span><span class="identifier">nonce</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="password.html">password</a></h4>
+</td>
+<td>
+<p>Get or set the user password.</p>
+<code><span class="keyword">var </span><span class="identifier">password</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="provider.html">provider</a></h4>
+</td>
+<td>
+<p>Get or set the authentication provider.</p>
+<code><span class="keyword">var </span><span class="identifier">provider</span><span class="symbol">: </span><a href="../-provider/index.html"><span class="identifier">Provider</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="to-auth-credentials.html">toAuthCredentials</a></h4>
+</td>
+<td>
+<p>Convert this instance to a <a href="#">AuthCredential</a> instance.</p>
+<code><span class="keyword">fun </span><span class="identifier">toAuthCredentials</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">AuthCredential</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

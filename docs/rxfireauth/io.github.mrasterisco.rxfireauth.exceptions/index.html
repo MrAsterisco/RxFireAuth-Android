@@ -1,0 +1,178 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>io.github.mrasterisco.rxfireauth.exceptions - rxfireauth</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">rxfireauth</a>&nbsp;/&nbsp;<a href="./index.html">io.github.mrasterisco.rxfireauth.exceptions</a><br/>
+<br/>
+<h2>Package io.github.mrasterisco.rxfireauth.exceptions</h2>
+<h3>Exceptions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-already-anonymous-exception/index.html">AlreadyAnonymousException</a></h4>
+</td>
+<td>
+<p>The requested action cannot be performed because there is already an anonymous user logged-in.</p>
+<code><span class="keyword">class </span><span class="identifier">AlreadyAnonymousException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html"><span class="identifier">IllegalStateException</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-already-logged-in-exception/index.html">AlreadyLoggedInException</a></h4>
+</td>
+<td>
+<p>There is already another user logged-in.</p>
+<code><span class="keyword">class </span><span class="identifier">AlreadyLoggedInException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/IllegalArgumentException.html"><span class="identifier">IllegalArgumentException</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-authentication-confirm-exception/index.html">AuthenticationConfirmException</a></h4>
+</td>
+<td>
+<p>The requested action requires a recent call to <a href="../io.github.mrasterisco.rxfireauth.interfaces/-i-user-manager/confirm-authentication.html">IUserManager.confirmAuthentication</a> or one of the related calls for other providers.</p>
+<code><span class="keyword">class </span><span class="identifier">AuthenticationConfirmException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html"><span class="identifier">Exception</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-configuration-exception/index.html">ConfigurationException</a></h4>
+</td>
+<td>
+<p>The provided Firebase configuration is invalid.</p>
+<code><span class="keyword">class </span><span class="identifier">ConfigurationException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/RuntimeException.html"><span class="identifier">RuntimeException</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-disabled-user-exception/index.html">DisabledUserException</a></h4>
+</td>
+<td>
+<p>The specified user is disabled.</p>
+<code><span class="keyword">class </span><span class="identifier">DisabledUserException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html"><span class="identifier">IllegalStateException</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-email-already-in-use-exception/index.html">EmailAlreadyInUseException</a></h4>
+</td>
+<td>
+<p>The specified email is already in use in another account.</p>
+<code><span class="keyword">class </span><span class="identifier">EmailAlreadyInUseException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/IllegalArgumentException.html"><span class="identifier">IllegalArgumentException</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-expired-token-exception/index.html">ExpiredTokenException</a></h4>
+</td>
+<td>
+<p>The user token has expired.</p>
+<code><span class="keyword">class </span><span class="identifier">ExpiredTokenException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html"><span class="identifier">IllegalStateException</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-invalid-configuration-exception/index.html">InvalidConfigurationException</a></h4>
+</td>
+<td>
+<p>The provided Firebase configuration is invalid.</p>
+<code><span class="keyword">class </span><span class="identifier">InvalidConfigurationException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/RuntimeException.html"><span class="identifier">RuntimeException</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-invalid-credential-exception/index.html">InvalidCredentialException</a></h4>
+</td>
+<td>
+<p>The specified credential is either expired or invalid.</p>
+<code><span class="keyword">class </span><span class="identifier">InvalidCredentialException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/IllegalArgumentException.html"><span class="identifier">IllegalArgumentException</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-invalid-email-exception/index.html">InvalidEmailException</a></h4>
+</td>
+<td>
+<p>The provided email is not valid.</p>
+<code><span class="keyword">class </span><span class="identifier">InvalidEmailException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/IllegalArgumentException.html"><span class="identifier">IllegalArgumentException</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-invalid-update-exception/index.html">InvalidUpdateException</a></h4>
+</td>
+<td>
+<p>The update cannot be performed because of invalid data.</p>
+<code><span class="keyword">class </span><span class="identifier">InvalidUpdateException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/IllegalArgumentException.html"><span class="identifier">IllegalArgumentException</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-migration-required-exception/index.html">MigrationRequiredException</a></h4>
+</td>
+<td>
+<p>The action would require to migrate the current user data to a new account.
+Use the passed login credentials to continue signing-in when ready by calling <a href="../io.github.mrasterisco.rxfireauth.interfaces/-i-user-manager/login-with-credentials.html">IUserManager.loginWithCredentials</a>.</p>
+<code><span class="keyword">class </span><span class="identifier">MigrationRequiredException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html"><span class="identifier">Exception</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-network-exception/index.html">NetworkException</a></h4>
+</td>
+<td>
+<p>An error occurred while reaching Firebase servers.</p>
+<code><span class="keyword">class </span><span class="identifier">NetworkException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/io/IOException.html"><span class="identifier">IOException</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-no-user-exception/index.html">NoUserException</a></h4>
+</td>
+<td>
+<p>There is no user associated to perform the requested action.</p>
+<code><span class="keyword">class </span><span class="identifier">NoUserException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/IllegalArgumentException.html"><span class="identifier">IllegalArgumentException</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-provider-already-linked-exception/index.html">ProviderAlreadyLinkedException</a></h4>
+</td>
+<td>
+<p>The specified provider is already linked with this user.</p>
+<code><span class="keyword">class </span><span class="identifier">ProviderAlreadyLinkedException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/IllegalArgumentException.html"><span class="identifier">IllegalArgumentException</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-provider-not-linked-exception/index.html">ProviderNotLinkedException</a></h4>
+</td>
+<td>
+<p>The specified provider is not linked with this user.</p>
+<code><span class="keyword">class </span><span class="identifier">ProviderNotLinkedException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-illegal-argument-exception/index.html"><span class="identifier">IllegalArgumentException</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-unexisting-user-exception/index.html">UnexistingUserException</a></h4>
+</td>
+<td>
+<p>The specified user cannot be found.</p>
+<code><span class="keyword">class </span><span class="identifier">UnexistingUserException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/IllegalArgumentException.html"><span class="identifier">IllegalArgumentException</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-weak-password-exception/index.html">WeakPasswordException</a></h4>
+</td>
+<td>
+<p>The specified password does not satisfy the basic security requirements.</p>
+<code><span class="keyword">class </span><span class="identifier">WeakPasswordException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/IllegalArgumentException.html"><span class="identifier">IllegalArgumentException</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-wrong-password-exception/index.html">WrongPasswordException</a></h4>
+</td>
+<td>
+<p>The specified password is invalid.</p>
+<code><span class="keyword">class </span><span class="identifier">WrongPasswordException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/IllegalArgumentException.html"><span class="identifier">IllegalArgumentException</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-wrong-user-exception/index.html">WrongUserException</a></h4>
+</td>
+<td>
+<p>The requested action would target a different user than the one currently signed-in.</p>
+<code><span class="keyword">class </span><span class="identifier">WrongUserException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html"><span class="identifier">IllegalStateException</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ILoginHandler - rxfireauth</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">rxfireauth</a>&nbsp;/&nbsp;<a href="../index.html">io.github.mrasterisco.rxfireauth.interfaces</a>&nbsp;/&nbsp;<a href="./index.html">ILoginHandler</a><br/>
+<br/>
+<h1>ILoginHandler</h1>
+<code><span class="keyword">interface </span><span class="identifier">ILoginHandler</span></code>
+<p>This interface identifies a login handler object
+that is used by the library to authenticated with a 3rd-party provider,
+such as Apple or Google.</p>
+<p>You will get an instance of this interface when reading the value of
+<a href="../-i-user-manager/login-handler.html">IUserManager.loginHandler</a>. You can use it to redirect activity results
+or incoming calls from the system browser, for example, when authenticating with a OAuth
+provider that redirects directly to your app (such as Google Sign In).</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="handle.html">handle</a></h4>
+</td>
+<td>
+<p>Handle the passed <a href="https://developer.android.com/reference/android/content/Intent.html">Intent</a>.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">handle</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.ILoginHandler$handle(android.content.Intent)/data">data</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/content/Intent.html"><span class="identifier">Intent</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

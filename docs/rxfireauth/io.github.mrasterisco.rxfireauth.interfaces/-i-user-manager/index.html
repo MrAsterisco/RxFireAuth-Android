@@ -1,0 +1,231 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>IUserManager - rxfireauth</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">rxfireauth</a>&nbsp;/&nbsp;<a href="../index.html">io.github.mrasterisco.rxfireauth.interfaces</a>&nbsp;/&nbsp;<a href="./index.html">IUserManager</a><br/>
+<br/>
+<h1>IUserManager</h1>
+<code><span class="keyword">interface </span><span class="identifier">IUserManager</span></code>
+<p>This interface defines the public APIs of the main wrapper
+around the Firebase Authentication SDK.</p>
+<p>When using the library in your code always make sure to reference this
+interface instead of the default implementation <a href="../../io.github.mrasterisco.rxfireauth.impl/-user-manager/index.html">UserManager</a>, as
+this interface will always conform to Semantic Versioning.</p>
+<p>All methods of this interface are wrapped inside a Rx object that will not execute
+any code until somebody subscribes to it.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="autoupdating-user.html">autoupdatingUser</a></h4>
+</td>
+<td>
+<p>Get an Observable that emits a new item every time the logged-in user
+is updated.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">autoupdatingUser</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../io.github.mrasterisco.rxfireauth.models/-user-data/index.html"><span class="identifier">UserData</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-anonymous.html">isAnonymous</a></h4>
+</td>
+<td>
+<p>Get if there is an anonymous user logged-in.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">isAnonymous</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-logged-in.html">isLoggedIn</a></h4>
+</td>
+<td>
+<p>Get if there is a currently logged-in user.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">isLoggedIn</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="login-handler.html">loginHandler</a></h4>
+</td>
+<td>
+<p>Get the current login handler.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">loginHandler</span><span class="symbol">: </span><a href="../-i-login-handler/index.html"><span class="identifier">ILoginHandler</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="user.html">user</a></h4>
+</td>
+<td>
+<p>Get the currently logged-in user or null if no user is logged-in.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">user</span><span class="symbol">: </span><a href="../../io.github.mrasterisco.rxfireauth.models/-user-data/index.html"><span class="identifier">UserData</span></a><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="account-exists.html">accountExists</a></h4>
+</td>
+<td>
+<p>Verify if an account exists on the server with the passed email address.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">accountExists</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$accountExists(kotlin.CharSequence)/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Single</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="confirm-authentication.html">confirmAuthentication</a></h4>
+</td>
+<td>
+<p>Confirm the authentication of the passed credentials with the currently signed in user.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">confirmAuthentication</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$confirmAuthentication(kotlin.CharSequence, kotlin.CharSequence)/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$confirmAuthentication(kotlin.CharSequence, kotlin.CharSequence)/password">password</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="confirm-authentication-with-apple.html">confirmAuthenticationWithApple</a></h4>
+</td>
+<td>
+<p>Confirm the authentication of the currently signed in user with Sign in with Apple.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">confirmAuthenticationWithApple</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$confirmAuthenticationWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String)/activity">activity</span><span class="symbol">:</span>&nbsp;<span class="identifier">FragmentActivity</span><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$confirmAuthenticationWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String)/serviceId">serviceId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$confirmAuthenticationWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String)/redirectUri">redirectUri</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="confirm-authentication-with-credentials.html">confirmAuthenticationWithCredentials</a></h4>
+</td>
+<td>
+<p>Confirm the authentication of the passed credentials with the currently signed in user.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">confirmAuthenticationWithCredentials</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$confirmAuthenticationWithCredentials(io.github.mrasterisco.rxfireauth.models.LoginCredentials)/loginCredentials">loginCredentials</span><span class="symbol">:</span>&nbsp;<a href="../../io.github.mrasterisco.rxfireauth.models/-login-credentials/index.html"><span class="identifier">LoginCredentials</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="confirm-authentication-with-google.html">confirmAuthenticationWithGoogle</a></h4>
+</td>
+<td>
+<p>Confirm the authentication of the currently signed in user with Google Sign In.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">confirmAuthenticationWithGoogle</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$confirmAuthenticationWithGoogle(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.Int)/activity">activity</span><span class="symbol">:</span>&nbsp;<span class="identifier">FragmentActivity</span><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$confirmAuthenticationWithGoogle(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.Int)/clientId">clientId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$confirmAuthenticationWithGoogle(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.Int)/requestCode">requestCode</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="delete-user.html">deleteUser</a></h4>
+</td>
+<td>
+<p>Delete the currently signed in user.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">deleteUser</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$deleteUser(kotlin.Boolean)/resetToAnonymous">resetToAnonymous</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="link-anonymous-account.html">linkAnonymousAccount</a></h4>
+</td>
+<td>
+<p>Convert an anonymous account to a normal user with an email and a password.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">linkAnonymousAccount</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$linkAnonymousAccount(kotlin.CharSequence, kotlin.CharSequence)/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$linkAnonymousAccount(kotlin.CharSequence, kotlin.CharSequence)/password">password</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="login.html">login</a></h4>
+</td>
+<td>
+<p>Login the user with the specified email address using the specified password.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">login</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$login(kotlin.CharSequence, kotlin.CharSequence, kotlin.Boolean)/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$login(kotlin.CharSequence, kotlin.CharSequence, kotlin.Boolean)/password">password</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$login(kotlin.CharSequence, kotlin.CharSequence, kotlin.Boolean)/allowMigration">allowMigration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Single</span><span class="symbol">&lt;</span><a href="../../io.github.mrasterisco.rxfireauth.models/-login-descriptor/index.html"><span class="identifier">LoginDescriptor</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="login-anonymously.html">loginAnonymously</a></h4>
+</td>
+<td>
+<p>Login an anonymous user.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">loginAnonymously</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="login-with-credentials.html">loginWithCredentials</a></h4>
+</td>
+<td>
+<p>Sign in with the passed credentials on a login provider.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">loginWithCredentials</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$loginWithCredentials(io.github.mrasterisco.rxfireauth.models.LoginCredentials, kotlin.Boolean, kotlin.Boolean)/credentials">credentials</span><span class="symbol">:</span>&nbsp;<a href="../../io.github.mrasterisco.rxfireauth.models/-login-credentials/index.html"><span class="identifier">LoginCredentials</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$loginWithCredentials(io.github.mrasterisco.rxfireauth.models.LoginCredentials, kotlin.Boolean, kotlin.Boolean)/updateUserDisplayName">updateUserDisplayName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$loginWithCredentials(io.github.mrasterisco.rxfireauth.models.LoginCredentials, kotlin.Boolean, kotlin.Boolean)/allowMigration">allowMigration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Single</span><span class="symbol">&lt;</span><a href="../../io.github.mrasterisco.rxfireauth.models/-login-descriptor/index.html"><span class="identifier">LoginDescriptor</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="login-without-checking.html">loginWithoutChecking</a></h4>
+</td>
+<td>
+<p>Sign in with the passed credentials without first checking if an account
+with the specified email address exists on the backend.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">loginWithoutChecking</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$loginWithoutChecking(kotlin.CharSequence, kotlin.CharSequence, kotlin.Boolean)/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$loginWithoutChecking(kotlin.CharSequence, kotlin.CharSequence, kotlin.Boolean)/password">password</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$loginWithoutChecking(kotlin.CharSequence, kotlin.CharSequence, kotlin.Boolean)/allowMigration">allowMigration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Single</span><span class="symbol">&lt;</span><a href="../../io.github.mrasterisco.rxfireauth.models/-login-descriptor/index.html"><span class="identifier">LoginDescriptor</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="logout.html">logout</a></h4>
+</td>
+<td>
+<p>Sign out the currently logged-in user.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">logout</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$logout(kotlin.Boolean)/resetToAnonymous">resetToAnonymous</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="register.html">register</a></h4>
+</td>
+<td>
+<p>Register a new account on the server with the passed email and password.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">register</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$register(kotlin.CharSequence, kotlin.CharSequence)/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$register(kotlin.CharSequence, kotlin.CharSequence)/password">password</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="sign-in-with-apple.html">signInWithApple</a></h4>
+</td>
+<td>
+<p>Sign in with Apple in the passed <a href="sign-in-with-apple.html#io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Boolean)/activity">activity</a>.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">signInWithApple</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Boolean)/activity">activity</span><span class="symbol">:</span>&nbsp;<span class="identifier">FragmentActivity</span><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Boolean)/serviceId">serviceId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Boolean)/redirectUri">redirectUri</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Boolean)/updateUserDisplayName">updateUserDisplayName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Boolean)/allowMigration">allowMigration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Single</span><span class="symbol">&lt;</span><a href="../../io.github.mrasterisco.rxfireauth.models/-login-descriptor/index.html"><span class="identifier">LoginDescriptor</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="sign-in-with-google.html">signInWithGoogle</a></h4>
+</td>
+<td>
+<p>Sign in with Google in the passed <a href="sign-in-with-google.html#io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithGoogle(android.app.Activity, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean)/activity">activity</a>.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">signInWithGoogle</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithGoogle(android.app.Activity, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean)/activity">activity</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/app/Activity.html"><span class="identifier">Activity</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithGoogle(android.app.Activity, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean)/clientId">clientId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithGoogle(android.app.Activity, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean)/requestCode">requestCode</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithGoogle(android.app.Activity, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean)/updateUserDisplayName">updateUserDisplayName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithGoogle(android.app.Activity, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean)/allowMigration">allowMigration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Single</span><span class="symbol">&lt;</span><a href="../../io.github.mrasterisco.rxfireauth.models/-login-descriptor/index.html"><span class="identifier">LoginDescriptor</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="update-email.html">updateEmail</a></h4>
+</td>
+<td>
+<p>Update the email of the currently signed in user.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">updateEmail</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$updateEmail(kotlin.CharSequence)/newEmail">newEmail</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="update-password.html">updatePassword</a></h4>
+</td>
+<td>
+<p>Update or set the password of the currently signed in user.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">updatePassword</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$updatePassword(kotlin.CharSequence)/newPassword">newPassword</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="update-user.html">updateUser</a></h4>
+</td>
+<td>
+<p>Update the currently signed in user taking new values from the passed object.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">updateUser</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$updateUser(io.github.mrasterisco.rxfireauth.models.UserData)/user">user</span><span class="symbol">:</span>&nbsp;<a href="../../io.github.mrasterisco.rxfireauth.models/-user-data/index.html"><span class="identifier">UserData</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code>
+<p>Update the currently signed in user by retrieving its value and passing it
+to the <a href="update-user.html#io.github.mrasterisco.rxfireauth.interfaces.IUserManager$updateUser(kotlin.Function1((io.github.mrasterisco.rxfireauth.models.UserData, )))/userConfigurationHandler">userConfigurationHandler</a>.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">updateUser</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$updateUser(kotlin.Function1((io.github.mrasterisco.rxfireauth.models.UserData, )))/userConfigurationHandler">userConfigurationHandler</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../io.github.mrasterisco.rxfireauth.models/-user-data/index.html"><span class="identifier">UserData</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="../../io.github.mrasterisco.rxfireauth.models/-user-data/index.html"><span class="identifier">UserData</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../../io.github.mrasterisco.rxfireauth.impl/-user-manager/index.html">UserManager</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">UserManager</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">IUserManager</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

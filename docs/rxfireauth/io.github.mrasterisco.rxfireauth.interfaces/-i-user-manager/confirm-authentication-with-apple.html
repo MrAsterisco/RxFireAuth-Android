@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>IUserManager.confirmAuthenticationWithApple - rxfireauth</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">rxfireauth</a>&nbsp;/&nbsp;<a href="../index.html">io.github.mrasterisco.rxfireauth.interfaces</a>&nbsp;/&nbsp;<a href="index.html">IUserManager</a>&nbsp;/&nbsp;<a href="./confirm-authentication-with-apple.html">confirmAuthenticationWithApple</a><br/>
+<br/>
+<h1>confirmAuthenticationWithApple</h1>
+<a name="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$confirmAuthenticationWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String)"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">confirmAuthenticationWithApple</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$confirmAuthenticationWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String)/activity">activity</span><span class="symbol">:</span>&nbsp;<span class="identifier">FragmentActivity</span><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$confirmAuthenticationWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String)/serviceId">serviceId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$confirmAuthenticationWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String)/redirectUri">redirectUri</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code>
+<p>Confirm the authentication of the currently signed in user with Sign in with Apple.</p>
+<p>You can use this function to renew the user authentication in order to perform sensitive
+actions such as updating the password or the deleting the account. The resulting Completable will
+emit <a href="../../io.github.mrasterisco.rxfireauth.exceptions/-provider-not-linked-exception/index.html">ProviderNotLinkedException</a>, if the user does not have Sign in with Apple among their <a href="../../io.github.mrasterisco.rxfireauth.models/-user-data/authentication-providers.html">UserData.authenticationProviders</a>.</p>
+<h3>Parameters</h3>
+<p><a name="activity"></a>
+<code>activity</code> - An activity that supports showing a <a href="#">DialogFragment</a>.</p>
+<p><a name="serviceId"></a>
+<code>serviceId</code> - The identifier of your Service ID on the Apple Developer Portal.</p>
+<p><a name="redirectUri"></a>
+<code>redirectUri</code> - The URI that you have configured on the Service ID on the Apple Developer Portal. You can retrieve it on the Firebase Console, under the Sign in with Apple configuration and it usually looks something like "https://.firebaseapp.com/__/auth/handler".</p>
+<p><strong>Return</strong><br/>
+A Completable action to observe.</p>
+</BODY>
+</HTML>

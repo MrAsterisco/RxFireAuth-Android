@@ -1,0 +1,8 @@
+$dokka.format:html
+$dokka.linkExtension:html
+
+io.github.mrasterisco.rxfireauth.exceptions
+io.github.mrasterisco.rxfireauth.handlers.apple
+io.github.mrasterisco.rxfireauth.impl
+io.github.mrasterisco.rxfireauth.interfaces
+io.github.mrasterisco.rxfireauth.models

@@ -1,0 +1,35 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>IUserManager.signInWithGoogle - rxfireauth</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">rxfireauth</a>&nbsp;/&nbsp;<a href="../index.html">io.github.mrasterisco.rxfireauth.interfaces</a>&nbsp;/&nbsp;<a href="index.html">IUserManager</a>&nbsp;/&nbsp;<a href="./sign-in-with-google.html">signInWithGoogle</a><br/>
+<br/>
+<h1>signInWithGoogle</h1>
+<a name="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithGoogle(android.app.Activity, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean)"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">signInWithGoogle</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithGoogle(android.app.Activity, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean)/activity">activity</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/app/Activity.html"><span class="identifier">Activity</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithGoogle(android.app.Activity, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean)/clientId">clientId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithGoogle(android.app.Activity, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean)/requestCode">requestCode</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithGoogle(android.app.Activity, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean)/updateUserDisplayName">updateUserDisplayName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithGoogle(android.app.Activity, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean)/allowMigration">allowMigration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Single</span><span class="symbol">&lt;</span><a href="../../io.github.mrasterisco.rxfireauth.models/-login-descriptor/index.html"><span class="identifier">LoginDescriptor</span></a><span class="symbol">&gt;</span></code>
+<p>Sign in with Google in the passed <a href="sign-in-with-google.html#io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithGoogle(android.app.Activity, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean)/activity">activity</a>.</p>
+<p>Before using Google Sign In, you must add your <a href="https://developers.google.com/android/guides/client-auth">SHA1 fingerprint</a> in your Project Settings; then
+copy your Web client ID (under Web SDK configuration, in the Authentication tab of your Firebase Console) and use it as <a href="sign-in-with-google.html#io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithGoogle(android.app.Activity, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean)/clientId">clientId</a>.</p>
+<p>Google Sign In works by starting a new activity for result from <a href="sign-in-with-google.html#io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithGoogle(android.app.Activity, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean)/activity">activity</a>. This means that the result of the action will be returned to <a href="sign-in-with-google.html#io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithGoogle(android.app.Activity, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean)/activity">activity</a>
+in the <a href="https://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent)">Activity.onActivityResult</a> method. For the library to be able to continue the login operation, you must forward that Intent to the current
+<a href="login-handler.html">loginHandler</a>, by calling <a href="../-i-login-handler/handle.html">ILoginHandler.handle</a> on it; you can identify the intent, by comparing the request code with the <a href="sign-in-with-google.html#io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithGoogle(android.app.Activity, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean)/requestCode">requestCode</a> you've passed
+when calling this function.</p>
+<h3>Parameters</h3>
+<p><a name="activity"></a>
+<code>activity</code> - The activity over which the Google Sign In UI should be displayed.</p>
+<p><a name="clientId"></a>
+<code>clientId</code> - Your client ID.</p>
+<p><a name="requestCode"></a>
+<code>requestCode</code> - A unique identifier that is returned to your activity in <a href="https://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent)">Activity.onActivityResult</a>. When you receive this request code, you must forward the Intent to the <a href="login-handler.html">loginHandler</a>, by calling <a href="../-i-login-handler/handle.html">ILoginHandler.handle</a>.</p>
+<p><a name="updateUserDisplayName"></a>
+<code>updateUserDisplayName</code> - : If the passed credentials result in a successful login and this is set to <code>true</code>, this function will attempt to update the user display name by reading it from the resulting <a href="../../io.github.mrasterisco.rxfireauth.models/-login-descriptor/index.html">LoginDescriptor</a>.</p>
+<p><a name="allowMigration"></a>
+<code>allowMigration</code> - An optional boolean that defines the behavior in case there is an anonymous
+    user logged-in and the user is trying to login into an existing account.</p>
+<p><strong>Return</strong><br/>
+A Single that emits errors or a <a href="../../io.github.mrasterisco.rxfireauth.models/-login-descriptor/index.html">LoginDescriptor</a> instance.</p>
+</BODY>
+</HTML>

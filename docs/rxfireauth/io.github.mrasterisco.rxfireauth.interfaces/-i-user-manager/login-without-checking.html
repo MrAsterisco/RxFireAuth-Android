@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>IUserManager.loginWithoutChecking - rxfireauth</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">rxfireauth</a>&nbsp;/&nbsp;<a href="../index.html">io.github.mrasterisco.rxfireauth.interfaces</a>&nbsp;/&nbsp;<a href="index.html">IUserManager</a>&nbsp;/&nbsp;<a href="./login-without-checking.html">loginWithoutChecking</a><br/>
+<br/>
+<h1>loginWithoutChecking</h1>
+<a name="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$loginWithoutChecking(kotlin.CharSequence, kotlin.CharSequence, kotlin.Boolean)"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">loginWithoutChecking</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$loginWithoutChecking(kotlin.CharSequence, kotlin.CharSequence, kotlin.Boolean)/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$loginWithoutChecking(kotlin.CharSequence, kotlin.CharSequence, kotlin.Boolean)/password">password</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$loginWithoutChecking(kotlin.CharSequence, kotlin.CharSequence, kotlin.Boolean)/allowMigration">allowMigration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Single</span><span class="symbol">&lt;</span><a href="../../io.github.mrasterisco.rxfireauth.models/-login-descriptor/index.html"><span class="identifier">LoginDescriptor</span></a><span class="symbol">&gt;</span></code>
+<p>Sign in with the passed credentials without first checking if an account
+with the specified email address exists on the backend.</p>
+<h3>Parameters</h3>
+<p><a name="email"></a>
+<code>email</code> - An email address.</p>
+<p><a name="password"></a>
+<code>password</code> - A password.</p>
+<p><a name="allowMigration"></a>
+<code>allowMigration</code> - An optional boolean that defines the behavior in case there is an anonymous
+    user logged-in and the user is trying to login into an existing account.</p>
+<p><strong>Return</strong><br/>
+A Single to observe for results.</p>
+</BODY>
+</HTML>

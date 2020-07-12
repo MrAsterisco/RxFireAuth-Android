@@ -1,0 +1,115 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>UserData - rxfireauth</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">rxfireauth</a>&nbsp;/&nbsp;<a href="../index.html">io.github.mrasterisco.rxfireauth.models</a>&nbsp;/&nbsp;<a href="./index.html">UserData</a><br/>
+<br/>
+<h1>UserData</h1>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">UserData</span></code>
+<p>A User.</p>
+<p>This class usually inherits data from a Firebase User.
+You cannot instantiate this class directly. Use <a href="../../io.github.mrasterisco.rxfireauth.interfaces/-i-user-manager/index.html">IUserManager</a>
+implementations to get a user.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Initialize a new instance using data from the passed Firebase User.</p>
+<code><span class="identifier">UserData</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.models.UserData$<init>(com.google.firebase.auth.FirebaseUser)/user">user</span><span class="symbol">:</span>&nbsp;<span class="identifier">FirebaseUser</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="authentication-providers.html">authenticationProviders</a></h4>
+</td>
+<td>
+<p>Get a list of providers that this user has connected.</p>
+<code><span class="keyword">val </span><span class="identifier">authenticationProviders</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-provider/index.html"><span class="identifier">Provider</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="display-name.html">displayName</a></h4>
+</td>
+<td>
+<p>Get the user display name.</p>
+<code><span class="keyword">var </span><span class="identifier">displayName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="email.html">email</a></h4>
+</td>
+<td>
+<p>Get the email.</p>
+<code><span class="keyword">val </span><span class="identifier">email</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="id.html">id</a></h4>
+</td>
+<td>
+<p>Get the ID.</p>
+<code><span class="keyword">val </span><span class="identifier">id</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-anonymous.html">isAnonymous</a></h4>
+</td>
+<td>
+<p>Get if this is anonymous user.</p>
+<code><span class="keyword">val </span><span class="identifier">isAnonymous</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-valid.html">isValid</a></h4>
+</td>
+<td>
+<p>Get if this user is valid or not.</p>
+<code><span class="keyword">val </span><span class="identifier">isValid</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="equals.html">equals</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">equals</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.models.UserData$equals(kotlin.Any)/other">other</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="hash-code.html">hashCode</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">hashCode</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="empty.html">empty</a></h4>
+</td>
+<td>
+<p>Get an empty user.</p>
+<code><span class="keyword">val </span><span class="identifier">empty</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">UserData</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>IUserManager.register - rxfireauth</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">rxfireauth</a>&nbsp;/&nbsp;<a href="../index.html">io.github.mrasterisco.rxfireauth.interfaces</a>&nbsp;/&nbsp;<a href="index.html">IUserManager</a>&nbsp;/&nbsp;<a href="./register.html">register</a><br/>
+<br/>
+<h1>register</h1>
+<a name="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$register(kotlin.CharSequence, kotlin.CharSequence)"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">register</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$register(kotlin.CharSequence, kotlin.CharSequence)/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$register(kotlin.CharSequence, kotlin.CharSequence)/password">password</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code>
+<p>Register a new account on the server with the passed email and password.</p>
+<p>The resulting Single will emit <a href="../../io.github.mrasterisco.rxfireauth.exceptions/-already-logged-in-exception/index.html">AlreadyLoggedInException</a> if there is already
+a non-anonymous user logged-in. If the logged-in user is anonymous, this function will
+call <a href="link-anonymous-account.html">linkAnonymousAccount</a> and return that value.</p>
+<p>After registering, the new user will become the currently logged-in user automatically.</p>
+<h3>Parameters</h3>
+<p><a name="email"></a>
+<code>email</code> - The user email address.</p>
+<p><a name="password"></a>
+<code>password</code> - The user password.</p>
+<p><strong>Return</strong><br/>
+A Completable action to observe.</p>
+</BODY>
+</HTML>

@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>IUserManager.login - rxfireauth</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">rxfireauth</a>&nbsp;/&nbsp;<a href="../index.html">io.github.mrasterisco.rxfireauth.interfaces</a>&nbsp;/&nbsp;<a href="index.html">IUserManager</a>&nbsp;/&nbsp;<a href="./login.html">login</a><br/>
+<br/>
+<h1>login</h1>
+<a name="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$login(kotlin.CharSequence, kotlin.CharSequence, kotlin.Boolean)"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">login</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$login(kotlin.CharSequence, kotlin.CharSequence, kotlin.Boolean)/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$login(kotlin.CharSequence, kotlin.CharSequence, kotlin.Boolean)/password">password</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$login(kotlin.CharSequence, kotlin.CharSequence, kotlin.Boolean)/allowMigration">allowMigration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Single</span><span class="symbol">&lt;</span><a href="../../io.github.mrasterisco.rxfireauth.models/-login-descriptor/index.html"><span class="identifier">LoginDescriptor</span></a><span class="symbol">&gt;</span></code>
+<p>Login the user with the specified email address using the specified password.</p>
+<p>The resulting Single will emit <a href="../../io.github.mrasterisco.rxfireauth.exceptions/-already-logged-in-exception/index.html">AlreadyLoggedInException</a> if there is already
+a non-anonymous user logged-in.</p>
+<p>You can control the migration behavior using <a href="login.html#io.github.mrasterisco.rxfireauth.interfaces.IUserManager$login(kotlin.CharSequence, kotlin.CharSequence, kotlin.Boolean)/allowMigration">allowMigration</a>, which will be passed back
+to the caller in <a href="../../io.github.mrasterisco.rxfireauth.models/-login-descriptor/perform-migration.html">LoginDescriptor.performMigration</a>; if set to null and a migration is required,
+the Single will emit <a href="../../io.github.mrasterisco.rxfireauth.exceptions/-migration-required-exception/index.html">MigrationRequiredException</a>.</p>
+<h3>Parameters</h3>
+<p><a name="email"></a>
+<code>email</code> - The user email address.</p>
+<p><a name="password"></a>
+<code>password</code> - The user password.</p>
+<p><a name="allowMigration"></a>
+<code>allowMigration</code> - An optional boolean that defines the behavior in case there is an anonymous
+    user logged-in and the user is trying to login into an existing account.</p>
+<p><strong>Return</strong><br/>
+A Single that emits errors or a <a href="../../io.github.mrasterisco.rxfireauth.models/-login-descriptor/index.html">LoginDescriptor</a> instance.</p>
+</BODY>
+</HTML>

@@ -26,4 +26,6 @@ project.ext.configureMavenCentralMetadata = { pom ->
     root.appendNode('description', project.description)
     root.appendNode('url', project.vcs)
     root.children().last() + pomConfig
+
+
 }

@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>IUserManager.loginAnonymously - rxfireauth</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">rxfireauth</a>&nbsp;/&nbsp;<a href="../index.html">io.github.mrasterisco.rxfireauth.interfaces</a>&nbsp;/&nbsp;<a href="index.html">IUserManager</a>&nbsp;/&nbsp;<a href="./login-anonymously.html">loginAnonymously</a><br/>
+<br/>
+<h1>loginAnonymously</h1>
+<a name="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$loginAnonymously()"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">loginAnonymously</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code>
+<p>Login an anonymous user.</p>
+<p>You can use this method to create an anonymous user on the server.</p>
+<p>The resulting Completable will emit <a href="../../io.github.mrasterisco.rxfireauth.exceptions/-already-logged-in-exception/index.html">AlreadyLoggedInException</a> if there is already
+a non-anonymous user logged-in. It will also emit <a href="../../io.github.mrasterisco.rxfireauth.exceptions/-already-anonymous-exception/index.html">AlreadyAnonymousException</a> if there is
+already an anonymous user logged-in.</p>
+<p><strong>Return</strong><br/>
+A Completable action to observe.</p>
+</BODY>
+</HTML>

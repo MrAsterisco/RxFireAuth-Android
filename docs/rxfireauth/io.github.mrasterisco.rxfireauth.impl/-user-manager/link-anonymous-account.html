@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>UserManager.linkAnonymousAccount - rxfireauth</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">rxfireauth</a>&nbsp;/&nbsp;<a href="../index.html">io.github.mrasterisco.rxfireauth.impl</a>&nbsp;/&nbsp;<a href="index.html">UserManager</a>&nbsp;/&nbsp;<a href="./link-anonymous-account.html">linkAnonymousAccount</a><br/>
+<br/>
+<h1>linkAnonymousAccount</h1>
+<a name="io.github.mrasterisco.rxfireauth.impl.UserManager$linkAnonymousAccount(kotlin.CharSequence, kotlin.CharSequence)"></a>
+<code><span class="keyword">fun </span><span class="identifier">linkAnonymousAccount</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.impl.UserManager$linkAnonymousAccount(kotlin.CharSequence, kotlin.CharSequence)/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.impl.UserManager$linkAnonymousAccount(kotlin.CharSequence, kotlin.CharSequence)/password">password</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Completable</span></code>
+<p>Convert an anonymous account to a normal user with an email and a password.</p>
+<p>The resulting Completable will emit <a href="../../io.github.mrasterisco.rxfireauth.exceptions/-no-user-exception/index.html">NoUserException</a> if the currently logged-in user
+is not anonymous or is null.</p>
+<h3>Parameters</h3>
+<p><a name="email"></a>
+<code>email</code> - The user email address.</p>
+<p><a name="password"></a>
+<code>password</code> - : The user password.</p>
+<p><strong>Return</strong><br/>
+A Completable action to observe.</p>
+</BODY>
+</HTML>

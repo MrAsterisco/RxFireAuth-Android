@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>IUserManager.signInWithApple - rxfireauth</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">rxfireauth</a>&nbsp;/&nbsp;<a href="../index.html">io.github.mrasterisco.rxfireauth.interfaces</a>&nbsp;/&nbsp;<a href="index.html">IUserManager</a>&nbsp;/&nbsp;<a href="./sign-in-with-apple.html">signInWithApple</a><br/>
+<br/>
+<h1>signInWithApple</h1>
+<a name="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Boolean)"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">signInWithApple</span><span class="symbol">(</span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Boolean)/activity">activity</span><span class="symbol">:</span>&nbsp;<span class="identifier">FragmentActivity</span><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Boolean)/serviceId">serviceId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Boolean)/redirectUri">redirectUri</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Boolean)/updateUserDisplayName">updateUserDisplayName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Boolean)/allowMigration">allowMigration</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Single</span><span class="symbol">&lt;</span><a href="../../io.github.mrasterisco.rxfireauth.models/-login-descriptor/index.html"><span class="identifier">LoginDescriptor</span></a><span class="symbol">&gt;</span></code>
+<p>Sign in with Apple in the passed <a href="sign-in-with-apple.html#io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Boolean)/activity">activity</a>.</p>
+<p>Sign in with Apple can only be configured by members of the <a href="https://developer.apple.com/programs/">Apple Developer Program</a>.</p>
+<p>The <a href="sign-in-with-apple.html#io.github.mrasterisco.rxfireauth.interfaces.IUserManager$signInWithApple(androidx.fragment.app.FragmentActivity, kotlin.String, kotlin.String, kotlin.Boolean, kotlin.Boolean)/serviceId">serviceId</a> is the identifier that you have created under "Certificates, Identifiers &amp; Profiles"
+on the <a href="https://developer.apple.com">Apple Developer Portal</a>. If you don't have one, you must create it before
+starting to use this function, as well as enabling the appropriate provider on the Firebase Console.
+You can get further info on the whole procedure on the <a href="https://firebase.google.com/docs/auth/android/apple#configure-sign-in-with-apple">Firebase Docs</a>.</p>
+<p>Because of limitations on how Apple returns information to the app from Sign in with Apple, this function
+will make use of a WebView, instead of Chrome Custom Tabs. The user may not be familiar or feel safe with this, so you
+may want to give an introduction before displaying the Sign in with Apple web page.</p>
+<p>The Sign in with Apple flow will be different for new users and returning users; as a result, in the latter case,
+the library will not be able to retrieve the user's display name, as Apple does not provide this information for
+returning users.
+Keep in mind that the account you are creating using this function will be linked to the user's Apple ID, but that link will only work
+in one direction: from Apple to Firebase; if you delete the Firebase account, the user will still find your app
+in their Apple ID settings, under "Apps Using Your Apple ID".</p>
+<p>To use Sign in with Apple, your app must comply with specific terms. We strongly suggest you to review them before
+starting the implementation: you can find those on the <a href="https://developer.apple.com/sign-in-with-apple/">Apple Developer Portal</a>.</p>
+<h3>Parameters</h3>
+<p><a name="activity"></a>
+<code>activity</code> - An activity that supports showing a <a href="#">DialogFragment</a>.</p>
+<p><a name="serviceId"></a>
+<code>serviceId</code> - The identifier of your Service ID on the Apple Developer Portal.</p>
+<p><a name="redirectUri"></a>
+<code>redirectUri</code> - The URI that you have configured on the Service ID on the Apple Developer Portal. You can retrieve it on the Firebase Console, under the Sign in with Apple configuration and it usually looks something like "https://.firebaseapp.com/__/auth/handler".</p>
+<p><a name="updateUserDisplayName"></a>
+<code>updateUserDisplayName</code> - : If the passed credentials result in a successful login and this is set to <code>true</code>, this function will attempt to update the user display name by reading it from the resulting <a href="../../io.github.mrasterisco.rxfireauth.models/-login-descriptor/index.html">LoginDescriptor</a>.</p>
+<p><a name="allowMigration"></a>
+<code>allowMigration</code> - An optional boolean that defines the behavior in case there is an anonymous
+    user logged-in and the user is trying to login into an existing account.</p>
+<p><strong>Return</strong><br/>
+A Single that emits errors or a <a href="../../io.github.mrasterisco.rxfireauth.models/-login-descriptor/index.html">LoginDescriptor</a> instance.</p>
+</BODY>
+</HTML>
