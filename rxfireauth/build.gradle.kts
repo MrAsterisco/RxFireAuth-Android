@@ -63,7 +63,7 @@ tasks {
 
     val sourcesJar by creating(Jar::class) {
         archiveClassifier.set("sources")
-        android.sourceSets.getByName("main").java.srcDirs
+        from(android.sourceSets.getByName("main").java.srcDirs)
     }
 
     val javadocJar by creating(Jar::class) {
@@ -71,4 +71,8 @@ tasks {
         archiveClassifier.set("javadoc")
         from(dokkaJavadoc.outputDirectory)
     }
+}
+
+artifacts {
+    archives(tasks.getByName("sourcesJar"))
 }
